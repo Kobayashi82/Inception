@@ -1,0 +1,349 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <title>Inception</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <link rel="stylesheet" href="assets/css/main.css" />
+    <noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+    <script>
+        const translations = {
+            en: {
+				overview: "Overview",
+                introTitle: "Inception",
+                introText1: "Inception is a project at 42 that introduces students to virtualization and containerization concepts using Docker.",
+                introText2: "The goal is to build a complete server environment by setting up Docker containers for services like Nginx, MariaDB, and WordPress, with advanced configurations for security and automation.",
+                learnMore: "Learn more",
+                wordpressTitle: "WordPress",
+                wordpressText1: "Discover the power of WordPress for building dynamic, feature-rich websites.",
+                wordpressText2: "Customize your site with a wide range of themes and plugins, creating an online presence that reflects your unique vision.",
+				gotowordpress: "Go to WordPress",
+                wordpressAdminTitle: "WordPress - Administrator",
+                wordpressAdminText1: "Manage your WordPress site with ease.",
+                wordpressAdminText2: "Access advanced settings, customize your site, and monitor performance all from the administrator dashboard.",
+				gotodashboard: "Go to Dashboard",
+                adminerTitle: "Adminer",
+                adminerText1: "Efficiently manage your database with Adminer.",
+                adminerText2: "Access tables, run queries, and perform administrative tasks from a user-friendly interface.",
+				gotoadminer: "Go to Adminer",
+                portainerTitle: "Portainer",
+                portainerText1: "Manage your Docker environments with ease using Portainer.",
+                portainerText2: "Gain full control over containers, images, networks, and volumes through a streamlined interface.",
+				gotoportainer: "Go to Portainer",
+				overviewText0: "Project Overview",
+                overviewText1: "The Inception project involves creating a hosting infrastructure in Docker, integrating services like Nginx, MariaDB, and WordPress, along with extras like Adminer, an FTP server, Redis for caching, and Portainer to manage the Docker infrastructure. Each container is secure and modular, with credentials managed in an environment variable file.",
+                overviewText3: "Nginx with SSL and Reverse Proxy:",
+                overviewText4: "Nginx serves as a secure reverse proxy, routing requests to internal services like Adminer and Portainer. With self-signed SSL and only port 443 exposed, it ensures secure HTTPS connections and limits external access.",
+                overviewText5: "MariaDB Database:",
+				overviewText6: "MariaDB serves as the database for WordPress, storing content and settings. It runs in an isolated container and communicates only internally, enhancing security.",
+				overviewText7: "WordPress Website:",
+                overviewText8: "WordPress enables dynamic content management and customization with themes and plugins. It runs with FastCGI, uses MariaDB for database management, and shares a volume with Nginx and VSFTPD for file access and management.",
+				overviewText9: "Adminer with Custom Theme:",
+                overviewText10: "Adminer is a lightweight PHP tool for managing MariaDB, accessible through Nginx as a reverse proxy for added security. Its customized interface enhances usability, allowing easy database management.",
+				overviewText11: "Portainer for Container Management:",
+                overviewText12: "Portainer is a graphical tool for managing and monitoring Docker, allowing container deployment, log viewing, and configuration management from a single panel. It’s secured behind Nginx as a reverse proxy to prevent direct exposure.",
+				overviewText13: "VSFTPD for FTP Access:",
+                overviewText14: "VSFTPD provides secure file system access, allowing authorized users to upload and manage files. It only exposes port 21 and a passive range (30000-30009) for controlled access.",
+				overviewText15: "Redis for WordPress Caching:",
+                overviewText16: "Redis is a cache for WordPress, improving performance by reducing database load and serving cached content for repeated requests. This allows for faster response times and better performance under high load.",
+				overviewText17: "Static Website for Project Overview:",
+                overviewText18: "A static HTML site presents the project components, with links to Adminer, Portainer, and WordPress. It is available in Spanish and English.",
+				overviewText19: "Security and Configuration",
+				overviewText20: "Port Exposure:",
+                overviewText21: "Only the necessary ports are exposed to minimize the attack surface. External access is restricted to:",
+				overviewText22: " For secure HTTPS access to Nginx and, through it, other services like Adminer and Portainer.",
+                overviewText23: " For FTP access, with passive data connections managed through ports 30000 to 30009.",
+				overviewText25: "Automatic Configuration:",
+                overviewText26: "Each container self-configures on startup, using values from an environment variable file to ensure consistent deployment.",
+				overviewText27: "Environment Variables:",
+                overviewText28: "Sensitive information, such as database and FTP server credentials, is securely stored in an environment variable file, excluded from version control to protect it from exposure.",
+            },
+            es: {
+				overview: "Resumen",
+                introTitle: "Inception",
+                introText1: "Inception es un proyecto de 42 que introduce a los estudiantes en los conceptos de virtualización y contenedorización usando Docker.",
+                introText2: "El objetivo es construir un entorno de servidor completo configurando contenedores Docker para servicios como Nginx, MariaDB y WordPress, con configuraciones avanzadas de seguridad y automatización.",
+                learnMore: "Saber más",
+                wordpressTitle: "WordPress",
+                wordpressText1: "Descubre el poder de WordPress para crear sitios web dinámicos y ricos en funciones.",
+                wordpressText2: "Personaliza tu sitio con una amplia gama de temas y complementos, creando una presencia en línea que refleje tu visión única.",
+				gotowordpress: "Ir a WordPress",
+                wordpressAdminTitle: "WordPress - Administrador",
+                wordpressAdminText1: "Administra tu sitio de WordPress con facilidad.",
+                wordpressAdminText2: "Accede a configuraciones avanzadas, personaliza tu sitio y supervisa el rendimiento desde el panel de administración.",
+				gotodashboard: "Ir al Dashboard",
+                adminerTitle: "Adminer",
+                adminerText1: "Gestiona tu base de datos de forma eficiente con Adminer.",
+                adminerText2: "Accede a tablas, ejecuta consultas y realiza tareas administrativas desde una interfaz fácil de usar.",
+				gotoadminer: "Ir a Adminer",
+                portainerTitle: "Portainer",
+                portainerText1: "Gestiona tus entornos Docker fácilmente con Portainer.",
+                portainerText2: "Obtén control total sobre contenedores, imágenes, redes y volúmenes a través de una interfaz simplificada.",
+				gotoportainer: "Ir a Portainer",
+				overviewText0: "Resumen del Proyecto",
+				overviewText1: "El proyecto Inception consiste en crear una infraestructura de hosting en Docker, integrando servicios como Nginx, MariaDB y WordPress, con extras como Adminer, un servidor FTP, Redis para caché y en este caso Portainer para administrar la infraestructura de Docker. Cada contenedor es seguro y modular, y las credenciales se manejan en un archivo de variables de entorno.",
+				overviewText3: "Nginx con SSL y Proxy Inverso:",
+				overviewText4: "Nginx actúa como un proxy inverso seguro, enrutando solicitudes a servicios internos como Adminer y Portainer. Con SSL autofirmado y solo el puerto 443 expuesto, garantiza conexiones HTTPS seguras y limita el acceso externo.",
+				overviewText5: "Base de Datos MariaDB:",
+				overviewText6: "MariaDB actúa como la base de datos para WordPress, almacenando contenido y configuraciones. Corre en un contenedor aislado y solo se comunica internamente, mejorando la seguridad. ",
+				overviewText7: "Sitio Web con WordPress:",
+				overviewText8: "WordPress permite la gestión dinámica de contenido y personalización con temas y plugins. Se ejecuta con FastCGI, utiliza MariaDB para gestionar la base de datos y emplea un volumen compartido con Nginx y VSFTPD para el acceso y la gestión de archivos.",
+				overviewText9: "Adminer con Tema Personalizado:",
+				overviewText10: "Adminer es una herramienta PHP ligera para gestionar MariaDB, accesible a través de Nginx como proxy inverso para mayor seguridad. Su interfaz personalizada mejora la usabilidad y permite gestionar la base de datos fácilmente.",
+				overviewText11: "Portainer para la Gestión de Contenedores:",
+				overviewText12: "Portainer es una herramienta gráfica para gestionar y monitorear Docker, permitiendo desplegar contenedores, ver registros y administrar configuraciones desde un solo panel. Está protegido detrás de Nginx como proxy inverso para evitar la exposición directa.",
+				overviewText13: "VSFTPD para Acceso FTP:",
+				overviewText14: "VSFTPD permite acceso seguro al sistema de archivos, permitiendo a usuarios autorizados cargar y gestionar archivos. Solo expone el puerto 21 y un rango pasivo (30000-30009) para acceso controlado.",
+				overviewText15: "Redis para Caché de WordPress:",
+				overviewText16: "Redis es una caché para WordPress, que mejora el rendimiento al reducir la carga en la base de datos y servir contenido en caché para solicitudes repetidas. Esto permite tiempos de respuesta más rápidos y mejora el rendimiento bajo alta carga.",
+				overviewText17: "Sitio Estático para la Vista General del Proyecto:",
+				overviewText18: "Un sitio HTML estático presenta los componentes del proyecto, con enlaces a Adminer, Portainer y WordPress. Está disponible en español e inglés.",
+				overviewText19: "Seguridad y Configuración",
+				overviewText20: "Exposición de Puertos:",
+				overviewText21: "Solo los puertos necesarios están expuestos para minimizar la superficie de ataque:",
+				overviewText22: " Para acceso seguro a HTTPS en Nginx y, a través de él, a otros servicios como Adminer y Portainer.",
+				overviewText23: " Para el acceso al servidor FTP, con conexiones de datos pasivas gestionadas a través de los puertos 30000 al 30009.",
+				overviewText25: "Configuración Automática:",
+				overviewText26: "Cada contenedor se autoconfigura al inicio, tomando valores de un archivo de variables de entorno para asegurar un despliegue consistente.",
+				overviewText27: "Variables de Entorno:",
+				overviewText28: "La información sensible, como las credenciales de la base de datos, servidor FTP, etc., se almacena de forma segura en un archivo de variables de entorno, excluido del control de versiones para protegerla de exposición.",
+            }
+        };
+
+        function setLanguage(lang) {
+			document.getElementById("overview").textContent = translations[lang].overview;
+            document.getElementById("introTitle").textContent = translations[lang].introTitle;
+            document.getElementById("introText1").textContent = translations[lang].introText1;
+            document.getElementById("introText2").textContent = translations[lang].introText2;
+            document.getElementById("learnMore").textContent = translations[lang].learnMore;
+            document.getElementById("wordpressTitle").textContent = translations[lang].wordpressTitle;
+            document.getElementById("wordpressText1").textContent = translations[lang].wordpressText1;
+            document.getElementById("wordpressText2").textContent = translations[lang].wordpressText2;
+			document.getElementById("gotowordpress").textContent = translations[lang].gotowordpress;
+            document.getElementById("wordpressAdminTitle").textContent = translations[lang].wordpressAdminTitle;
+            document.getElementById("wordpressAdminText1").textContent = translations[lang].wordpressAdminText1;
+            document.getElementById("wordpressAdminText2").textContent = translations[lang].wordpressAdminText2;
+			document.getElementById("gotodashboard").textContent = translations[lang].gotodashboard;
+            document.getElementById("adminerTitle").textContent = translations[lang].adminerTitle;
+            document.getElementById("adminerText1").textContent = translations[lang].adminerText1;
+            document.getElementById("adminerText2").textContent = translations[lang].adminerText2;
+			document.getElementById("gotoadminer").textContent = translations[lang].gotoadminer;
+            document.getElementById("portainerTitle").textContent = translations[lang].portainerTitle;
+            document.getElementById("portainerText1").textContent = translations[lang].portainerText1;
+            document.getElementById("portainerText2").textContent = translations[lang].portainerText2;
+			document.getElementById("gotoportainer").textContent = translations[lang].gotoportainer;
+			document.getElementById("overviewText0").textContent = translations[lang].overviewText0;
+			document.getElementById("overviewText1").textContent = translations[lang].overviewText1;
+			document.getElementById("overviewText3").textContent = translations[lang].overviewText3;
+			document.getElementById("overviewText4").textContent = translations[lang].overviewText4;
+			document.getElementById("overviewText5").textContent = translations[lang].overviewText5;
+			document.getElementById("overviewText6").textContent = translations[lang].overviewText6;
+			document.getElementById("overviewText7").textContent = translations[lang].overviewText7;
+			document.getElementById("overviewText8").textContent = translations[lang].overviewText8;
+			document.getElementById("overviewText9").textContent = translations[lang].overviewText9;
+			document.getElementById("overviewText10").textContent = translations[lang].overviewText10;
+			document.getElementById("overviewText11").textContent = translations[lang].overviewText11;
+			document.getElementById("overviewText12").textContent = translations[lang].overviewText12;
+			document.getElementById("overviewText13").textContent = translations[lang].overviewText13;
+			document.getElementById("overviewText14").textContent = translations[lang].overviewText14;
+			document.getElementById("overviewText15").textContent = translations[lang].overviewText15;
+			document.getElementById("overviewText16").textContent = translations[lang].overviewText16;
+			document.getElementById("overviewText17").textContent = translations[lang].overviewText17;
+			document.getElementById("overviewText18").textContent = translations[lang].overviewText18;
+			document.getElementById("overviewText19").textContent = translations[lang].overviewText19;
+			document.getElementById("overviewText20").textContent = translations[lang].overviewText20;
+			document.getElementById("overviewText21").textContent = translations[lang].overviewText21;
+			document.getElementById("overviewText22").textContent = translations[lang].overviewText22;
+			document.getElementById("overviewText23").textContent = translations[lang].overviewText23;
+			document.getElementById("overviewText25").textContent = translations[lang].overviewText25;
+			document.getElementById("overviewText26").textContent = translations[lang].overviewText26;
+			document.getElementById("overviewText27").textContent = translations[lang].overviewText27;
+			document.getElementById("overviewText28").textContent = translations[lang].overviewText28;
+        }
+    </script>
+</head>
+<body class="is-preload" onload="setLanguage('en')">
+    <!-- Language Selector -->
+	<div class="language-switcher">
+		<img src="images/en.png" alt="English" class="flag-icon" onclick="setLanguage('en')" />
+		<img src="images/es.png" alt="Español" class="flag-icon" onclick="setLanguage('es')" />
+	</div>
+	<div class="logo">
+		<img src="images/logo.gif" alt="Logo" class="logo-icon" />
+	</div>
+	
+    <!-- Sidebar -->
+    <section id="sidebar">
+        <div class="inner">
+            <nav>
+                <ul>
+                    <li><a href="#intro">Inception</a></li>
+                    <li><a href="#one">WordPress</a></li>
+                    <li><a href="#two">Adminer</a></li>
+                    <li><a href="#three">Portainer</a></li>
+                    <li><a href="#four" id="overview"></a></li>
+                </ul>
+            </nav>
+        </div>
+    </section>
+
+    <!-- Wrapper -->
+    <div id="wrapper">
+        <!-- Intro -->
+        <section id="intro" class="wrapper style1 fullscreen fade-up">
+            <div class="inner">
+                <h1 id="introTitle"></h1>
+                <p id="introText1"></p>
+                <p id="introText2"></p>
+                <ul class="actions">
+                    <li><a href="#four" class="button scrolly" id="learnMore"></a></li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- WordPress Section -->
+		<section id="one" class="wrapper style4 spotlights">
+			<section>
+				<a href="/" target="_blank" class="image"><img src="images/wordpress.png" alt="" data-position="center center" /></a>
+				<div class="content">
+					<div class="inner">
+                        <h2 id="wordpressTitle"></h2>
+                        <p id="wordpressText1"></p>
+                        <p id="wordpressText2"></p>
+						<ul class="actions">
+                            <li><a href="/" class="button" target="_blank" id="gotowordpress"></a></li>
+						</ul>
+					</div>
+				</div>
+			</section>
+			<section>
+				<a href="/wp-admin/" target="_blank" class="image"><img src="images/admin.jpg" alt="" data-position="top center" /></a>
+				<div class="content">
+					<div class="inner">
+						<h2 id="wordpressAdminTitle"></h2>
+						<p id="wordpressAdminText1"></p>
+						<p id="wordpressAdminText2"></p>
+						<ul class="actions">
+							<li><a href="/wp-admin/" class="button" target="_blank" id="gotodashboard"></a></li>
+						</ul>								
+					</div>
+				</div>
+			</section>
+		</section>
+
+        <!-- Adminer Section -->
+        <section id="two" class="wrapper style3 spotlights">
+            <section>
+                <a href="/adminer/" target="_blank" class="image"><img src="images/adminer.png" alt="" data-position="25% 25%" /></a>
+                <div class="content">
+                    <div class="inner">
+                        <h2 id="adminerTitle">Adminer</h2>
+                        <p id="adminerText1"></p>
+                        <p id="adminerText2"></p>
+                        <ul class="actions">
+                            <li><a href="/adminer/" class="button" target="_blank" id="gotoadminer"></a></li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+        </section>
+
+        <!-- Portainer Section -->
+        <section id="three" class="wrapper style2 spotlights">
+            <section>
+                <a href="/portainer/" target="_blank" class="image"><img src="images/portainer.png" alt="" data-position="25% 25%" /></a>
+                <div class="content">
+                    <div class="inner">
+                        <h2 id="portainerTitle"></h2>
+                        <p id="portainerText1"></p>
+                        <p id="portainerText2"></p>
+                        <ul class="actions">
+                            <li><a href="/portainer/" class="button" target="_blank" id="gotoportainer"></a></li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+        </section>
+
+        <!-- Overview Section -->
+		<section id="four" class="wrapper style1 fade-up">
+			<div class="inner">
+				<h2 id="overviewText0"></h2>
+				<p id="overviewText1"></p>
+				
+				<ul>
+					<li><strong id="overviewText3"></strong> 
+						<p id="overviewText4"></p>
+					</li>
+					
+					<li><strong id="overviewText5"></strong> 
+						<p id="overviewText6"></p>
+					</li>
+					
+					<li><strong id="overviewText7"></strong> 
+						<p id="overviewText8"></p>
+					</li>
+					
+					<li><strong id="overviewText9"></strong> 
+						<p id="overviewText10"></p>
+					</li>
+					
+					<li><strong id="overviewText11"></strong> 
+						<p id="overviewText12"></p>
+					</li>
+					
+					<li><strong id="overviewText13"></strong> 
+						<p id="overviewText14"></p>
+					</li>
+					
+					<li><strong id="overviewText15"></strong> 
+						<p id="overviewText16"></p>
+					</li>
+					
+					<li><strong id="overviewText17"></strong> 
+						<p id="overviewText18"></p>
+					</li>
+				</ul>
+				
+				<h3 id="overviewText19"></h3>
+				
+				<ul>
+					<li><strong id="overviewText20"></strong> 
+						<p id="overviewText21"></p>
+						<ul>
+							<li><strong>443:</strong><span id="overviewText22"></span></li>
+							<li><strong>21:</strong>&nbsp;&nbsp;<span id="overviewText23"></span></li>
+						</ul>
+					</li>
+					
+					<li><strong id="overviewText25"></strong> 
+						<p id="overviewText26"></p>
+					</li>
+					
+					<li><strong id="overviewText27"></strong> 
+						<p id="overviewText28"></p>
+					</li>
+				</ul>
+			</div>
+		</section>		
+	</div>
+
+    <!-- Footer -->
+    <footer id="footer" class="wrapper style1-alt">
+        <div class="inner">
+            <ul class="menu">
+                <li>vzurera-</li><li>42 Málaga</li>
+            </ul>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/js/jquery.scrollex.min.js"></script>
+    <script src="assets/js/jquery.scrolly.min.js"></script>
+    <script src="assets/js/browser.min.js"></script>
+    <script src="assets/js/breakpoints.min.js"></script>
+    <script src="assets/js/util.js"></script>
+    <script src="assets/js/main.js"></script>
+</body>
+</html>
