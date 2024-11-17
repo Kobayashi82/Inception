@@ -1,0 +1,73 @@
+setup-alpine
+es
+es
+[ENTER]
+[ENTER]
+[ENTER]
+[ENTER]
+aA42424242**
+aA42424242**
+Europe
+Madrid
+[ENTER]
+[ENTER]
+[ENTER]
+vzurera-
+Victor Zurera
+aA4242**
+aA4242**
+[ENTER]
+[ENTER]
+sda
+sys
+y
+"remove CD"
+"Set Port 2222 - 22"
+reboot
+
+
+echo "http://dl-cdn.alpinelinux.org/alpine/v3.20/community" >> /etc/apk/repositories
+apk update
+apk add sudo docker docker-compose make
+adduser vzurera- wheel
+visudo
+%wheel ALL=(ALL) ALL	(uncomment)
+adduser vzurera- docker
+rc-update add docker boot
+service docker start
+
+vi /etc/ssh/sshd_config
+X11Forwarding yes
+X11UseLocalhost yes	(uncomment)
+service sshd restart
+
+
+ip route | grep default
+export DISPLAY=172.24.96.1:0
+ssh -x vzurera-@172.24.96.1 -p 2222
+
+ssh-keygen -R "[172.24.96.1]:2222"	(remove old connection)
+ssh vzurera-@172.24.96.1 -p 2222
+yes
+aA4242**
+
+scp -P 2222 -r /mnt/d/inception vzurera-@172.24.96.1:/home/vzurera-
+aA4242**
+
+cd inception
+make
+
+apk add chromium
+apk add firefox
+
+FTP
+----
+apk add ncftp
+ncftp -u usuario -p contraseña localhost
+
+
+
+ip route | grep default
+export DISPLAY=172.24.96.1:0
+ssh -x vzurera-@172.24.96.1 -p 2222
+chromium-browser --disable-gpu --no-sandbox &
