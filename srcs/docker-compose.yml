@@ -1,0 +1,152 @@
+
+services:
+
+
+# -------------------- NGINX ------------------- #
+
+  # Nginx
+  nginx:
+    container_name: nginx                             # Container name
+    build:
+      context: ./requirements/nginx                   # Location of the Dockerfile
+    volumes:
+      - wp-data:/var/www                              # Volume on disk
+    ports:
+      - "443:443"                                     # Port for HTTPS
+    networks:
+      - inception                                     # Network connecting all containers
+    restart: always                                   # Restart container in case of failure
+
+
+# ------------------ WORDPRESS ----------------- #
+
+  wordpress:
+    container_name: wordpress                         # Container name
+    env_file: .env                                    # File with environment variables
+    build:
+      context: ./requirements/wordpress               # Location of the Dockerfile
+    environment:
+      - WP_TITLE=Wordpress
+      - WP_URL=https://${DOMAIN_NAME}
+      - WP_ADMIN_USER=${WP_ADMIN_NAME}
+      - WP_ADMIN_PASSWORD=${ADMIN_PASS}
+      - WP_ADMIN_EMAIL=${WP_ADMIN_NAME}@42.com
+      - WP_USER=${USER_NAME}
+      - WP_USER_EMAIL=${USER_NAME}@42.com
+      - WP_USER_PASSWORD=${USER_PASS}
+      - SQL_DATABASE=wordpress_db
+      - SQL_ROOT_PASSWORD=${ADMIN_PASS}
+      - SQL_USER=${USER_NAME}
+      - SQL_PASSWORD=${USER_PASS}
+      - REDIS_PASSWORD=${ADMIN_PASS}
+    volumes:
+      - wp-data:/var/www                              # Volume on disk
+    networks:
+      - inception                                     # Network connecting all containers
+    depends_on:
+      - mariadb                                       # MariaDB Dependency
+    restart: always                                   # Restart container in case of failure
+
+
+# ------------------ MARIA DB ------------------ #
+
+  mariadb:
+    container_name: mariadb                           # Container name
+    env_file: .env                                    # File with environment variables
+    build:
+      context: ./requirements/mariadb                 # Location of the Dockerfile
+    environment:
+      - SQL_DATABASE=wordpress_db
+      - SQL_ROOT_PASSWORD=${ADMIN_PASS}
+      - SQL_USER=${USER_NAME}
+      - SQL_PASSWORD=${USER_PASS}
+    volumes:
+      - db-data:/var/lib/mysql                        # Volume on disk
+    networks:
+      - inception                                     # Network connecting all containers
+    restart: always                                   # Restart container in case of failure
+
+
+# -------------------- REDIS ------------------- #
+
+  redis:
+    container_name: redis                             # Container name
+    env_file: .env                                    # File with environment variables
+    build:
+      context: ./requirements/bonus/redis             # Location of the Dockerfile
+      args:
+        REDIS_PASSWORD: ${ADMIN_PASS}
+    networks:
+      - inception                                     # Network connecting all containers
+    restart: always                                   # Restart container in case of failure
+
+
+# ------------------- VSFTPD ------------------- #
+
+  vsftpd:
+    container_name: vsftpd                            # Container name
+    env_file: .env                                    # File with environment variables
+    build:
+      context: ./requirements/bonus/vsftpd            # Location of the Dockerfile
+      args:
+        FTP_HOST: ${DOMAIN_NAME}
+        FTP_USER: ${USER_NAME}
+        FTP_PASS: ${USER_PASS} 
+    volumes:
+      - wp-data:/var/www                              # Volume on disk
+    ports:
+      - "21:21"                                       # Port for FTP
+      - "30000-30009:30000-30009"                     # Port for passive mode
+    networks:
+      - inception                                     # Network connecting all containers
+    restart: always                                   # Restart container in case of failure
+
+
+# ------------------ PORTAINER ----------------- #
+
+  portainer:
+    container_name: portainer                         # Container name
+    env_file: .env                                    # File with environment variables
+    build:
+      context: ./requirements/bonus/portainer         # Location of the Dockerfile
+      args:
+        PORTAINER_PASSWORD: ${ADMIN_PASS}
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    networks:
+      - inception                                     # Network connecting all containers
+    restart: always                                   # Restart container in case of failure
+
+
+# ------------------- ADMINER ------------------ #
+
+  adminer:
+    container_name: adminer                           # Container name
+    build:
+      context: ./requirements/bonus/adminer           # Location of the Dockerfile
+    networks:
+      - inception                                     # Network connecting all containers
+    restart: always                                   # Restart container in case of failure
+
+# ------------------ VOLUMES ------------------- #
+
+volumes:
+  wp-data:
+    driver: local                                     # Use the local driver for this volume
+    driver_opts:
+      type: none                                      # Use a bind mount instead of creating a separate filesystem
+      device: ~/data/wordpress                        # Path in the host filesystem for the bind mount
+      o: bind                                         # Activate the bind mount
+  db-data:
+    driver: local                                     # Use the local driver for this volume
+    driver_opts:
+      type: none                                      # Use a bind mount instead of creating a separate filesystem
+      device: ~/data/mariadb                          # Path in the host filesystem for the bind mount
+      o: bind                                         # Activate the bind mount
+
+
+# ------------------ NETWORK ------------------- #
+
+networks:
+  inception:
+    name: inception                                   # Network connecting all containers
