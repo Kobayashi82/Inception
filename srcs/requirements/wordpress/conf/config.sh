@@ -36,6 +36,8 @@ if [ ! -f "/var/www/wp-config.php" ]; then
 
     wp plugin install redis-cache --activate --allow-root --path='/var/www'
     wp redis enable --allow-root --path='/var/www'
+    
+    wp theme install inspire --activate --allow-root
 fi
 
 chown -R www-data /var/www

@@ -1,0 +1,5 @@
+DOMAIN_NAME=localhost
+USER_NAME=user_name
+USER_PASS=user_pass
+ADMIN_NAME=admin_name
+ADMIN_PASS=admin_pass (12 char min)

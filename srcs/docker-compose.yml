@@ -28,9 +28,9 @@ services:
     environment:
       - WP_TITLE=Wordpress
       - WP_URL=https://${DOMAIN_NAME}
-      - WP_ADMIN_USER=${WP_ADMIN_NAME}
+      - WP_ADMIN_USER=${ADMIN_NAME}
       - WP_ADMIN_PASSWORD=${ADMIN_PASS}
-      - WP_ADMIN_EMAIL=${WP_ADMIN_NAME}@42.com
+      - WP_ADMIN_EMAIL=${ADMIN_NAME}@42.com
       - WP_USER=${USER_NAME}
       - WP_USER_EMAIL=${USER_NAME}@42.com
       - WP_USER_PASSWORD=${USER_PASS}
