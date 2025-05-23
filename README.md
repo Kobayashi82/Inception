@@ -18,7 +18,7 @@ La infraestructura está compuesta por los siguientes servicios principales:
 ### Servicios Principales
 
 - **NGINX**: Servidor web con soporte TLSv1.2/TLSv1.3
-- **WordPress**: CMS con php-fpm
+- **WordPress**: Sistema de gestión de contenidos para crear y administrar sitios web
 - **MariaDB**: Base de datos para WordPress
 
 ### Servicios Bonus
