@@ -97,8 +97,6 @@ services:
     ports:
       - "21:21"                                       # Port for FTP
       - "30000-30009:30000-30009"                     # Port for passive mode
-    networks:
-      - inception                                     # Network connecting all containers
     restart: always                                   # Restart container in case of failure
 
 

@@ -136,11 +136,11 @@ ADMIN_PASS=admin_pass (12 char min)
 | Servicio   | Puerto Interno | Puerto Externo | Descripción                 |
 |------------|----------------|----------------|----------------------------|
 | NGINX      | 443            | 443            | Servidor web principal con SSL |
-| WordPress  | 9000           | -              | PHP-FPM                    |
+| WordPress  | 9000           | -              | Servicio de gestión de contenidos web (web en /) |
 | MariaDB    | 3306           | -              | Base de datos              |
 | Redis      | 6379           | -              | Cache                      |
-| Adminer    | -              | -              | Gestión de base de datos (web en /adminer) |
-| Portainer  | -              | -              | Gestión de Docker (web en /portainer)    |
+| Adminer    | 8000           | -              | Gestión de base de datos (web en /adminer) |
+| Portainer  | 9000           | -              | Gestión de Docker (web en /portainer)    |
 | Sitio Web  | -              | -              | Página web estática (web en /inception) |
 | VSFTPD     | 21             | 21             | Servidor FTP               |
 | VSFTPD     | 30000-30009    | 30000-30009    | Puertos pasivos FTP        |
