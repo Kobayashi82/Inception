@@ -1,3 +1,19 @@
+
+<div align="center">
+
+![Docker](https://img.shields.io/badge/Docker-Containerization-blue?style=for-the-badge)
+![NGINX](https://img.shields.io/badge/NGINX-TLSv1.3-green?style=for-the-badge)
+![WordPress](https://img.shields.io/badge/WordPress-php--fpm-orange?style=for-the-badge)
+![MariaDB](https://img.shields.io/badge/MariaDB-Database-brown?style=for-the-badge)
+
+*Infraestructura completa de servicios web con Docker y orquestación de microservicios*
+
+</div>
+
+<div align="center">
+  <img src="/Inception.jpg">
+</div>
+
 # Inception
 
 ## 📋 Descripción del Proyecto
@@ -194,3 +210,21 @@ ADMIN_PASS=admin_pass (12 char min)
 - [Documentación de VSFTPD](https://security.appspot.com/vsftpd.html)
 - [Documentación de Adminer](https://www.adminer.org/en/)
 - [Documentación de Portainer](https://docs.portainer.io/)
+
+---
+
+## 📄 Licencia
+
+Este proyecto está licenciado bajo la WTFPL – [Do What the Fuck You Want to Public License](http://www.wtfpl.net/about/).
+
+---
+
+<div align="center">
+
+**🐳 Desarrollado como parte del curriculum de 42 School 🐳**
+
+*"We need to go deeper... into containerization"*
+
+<div align="center">
+  <img src="/srcs/requirements/nginx/conf/inception/images/logo.gif">
+</div>
