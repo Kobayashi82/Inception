@@ -2,8 +2,8 @@
 <div align="center">
 
 ![Desktop](https://img.shields.io/badge/Desktop-brown?style=for-the-badge)
-![WordPress](https://img.shields.io/badge/WordPress-php--fpm-orange?style=for-the-badge)
-![MariaDB](https://img.shields.io/badge/MariaDB-Database-brown?style=for-the-badge)
+![WordPress](https://img.shields.io/badge/WordPress-php--fpm-blue?style=for-the-badge)
+![MariaDB](https://img.shields.io/badge/MariaDB-Database-orange?style=for-the-badge)
 
 *Infraestructura completa de servicios web con Docker y orquestación de microservicios*
 
