@@ -5,7 +5,7 @@
 ![WordPress](https://img.shields.io/badge/WordPress-php--fpm-blue?style=for-the-badge)
 ![MariaDB](https://img.shields.io/badge/MariaDB-Database-orange?style=for-the-badge)
 
-*Infraestructura completa de servicios web con Docker y orquestación de microservicios*
+*Complete web services infrastructure with Docker and microservices orchestration*
 
 </div>
 
@@ -15,36 +15,38 @@
 
 # Inception
 
-## 📋 Descripción del Proyecto
+[README en Español](README_es.md)
 
-Inception es un proyecto de administración de sistemas que tiene como objetivo ampliar el conocimiento sobre virtualización mediante Docker. El proyecto consiste en crear una pequeña infraestructura compuesta por diferentes servicios bajo reglas específicas, todo ejecutándose en contenedores Docker orquestados con docker-compose.
+## 📋 Project Description
 
-## 🎯 Objetivos
+Inception is a systems administration project aimed at expanding knowledge about virtualization using Docker. The project consists of creating a small infrastructure composed of different services under specific rules, all running in Docker containers orchestrated with docker-compose.
 
-- Configurar una infraestructura completa usando Docker
-- Gestionar servicios web con NGINX, WordPress y MariaDB
-- Configurar SSL/TLS para conexiones seguras
-- Implementar servicios adicionales (bonus)
+## 🎯 Objectives
 
-## 🏗️ Arquitectura
+- Configure a complete infrastructure using Docker
+- Manage web services with NGINX, WordPress, and MariaDB
+- Configure SSL/TLS for secure connections
+- Implement additional services (bonus)
 
-La infraestructura está compuesta por los siguientes servicios principales:
+## 🏗️ Architecture
 
-### Servicios Principales
+The infrastructure is composed of the following main services:
 
-- **NGINX**: Servidor web con soporte TLSv1.2/TLSv1.3
-- **WordPress**: Sistema de gestión de contenidos para crear y administrar sitios web
-- **MariaDB**: Base de datos para WordPress
+### Core Services
 
-### Servicios Bonus
+- **NGINX**: Web server with TLSv1.2/TLSv1.3 support
+- **WordPress**: Content management system to create and manage websites
+- **MariaDB**: Database for WordPress
 
-- **Redis**: Cache para WordPress
-- **Adminer**: Herramienta de administración de base de datos
-- **Portainer**: Panel de administración de Docker
-- **Sitio Web Estático**: Página web simple en HTML/CSS/JS
-- **VSFTPD**: Servidor FTP apuntando al volumen de WordPress
+### Bonus Services
 
-## 📁 Estructura del Proyecto
+- **Redis**: Cache for WordPress
+- **Adminer**: Database administration tool
+- **Portainer**: Docker admin panel
+- **Static Website**: Simple HTML/CSS/JS website
+- **VSFTPD**: FTP server pointing to the WordPress volume
+
+## 📁 Project Structure
 
 ```
 inception/
@@ -88,11 +90,11 @@ inception/
                 └── Dockerfile
 ```
 
-## ⚙️ Configuración
+## ⚙️ Configuration
 
-### Variables de Entorno
+### Environment Variables
 
-El archivo `.env` debe contener todas las variables sensibles:
+The `.env` file must contain all sensitive variables:
 
 ```env
 DOMAIN_NAME=localhost
@@ -102,125 +104,125 @@ ADMIN_NAME=admin_name
 ADMIN_PASS=admin_pass (12 char min)
 ```
 
-## 🚀 Instalación y Uso
+## 🚀 Installation and Usage
 
-### Pasos de Instalación
+### Installation steps
 
-1. **Clonar el repositorio**:
+1. **Clone the repository**:
    ```bash
    git clone git@github.com:Kobayashi82/Inception.git
    cd inception
    ```
 
-2. **Configurar variables de entorno**:
+2. **Configure environment variables**:
    ```bash
    mv srcs/env_template srcs/.env
-   # Editar srcs/.env con tus valores
+   # Edit srcs/.env with your values
    ```
 
-4. **Construir y ejecutar**:
+4. **Build and run**:
    ```bash
    make
    ```
 
-5. **Acceder a los servicios**:
+5. **Access services**:
    - WordPress: https://localhost/
    - Adminer: https://localhost/adminer/
    - Portainer: https://localhost/portainer/
-   - Sitio Web Estático: https://localhost/inception/
-   - FTP: Conectar a localhost:21 con las credenciales del archivo .env
+   - Static Website: https://localhost/inception/
+   - FTP: Connect to localhost:21 with credentials from the .env file
 
-### Comandos del Makefile
+### Makefile commands
 
-- `make`: Construye e inicia todos los servicios
-- `make up`: Construye e inicia todos los servicios
-- `make down`: Detiene todos los contenedores
-- `make restart`: Reinicia todos los servicios
-- `make build`: Construye imágenes de contenedores
-- `make rebuild`: Reconstruye imágenes sin caché
-- `make clean`: Elimina imágenes
-- `make iclean`: Elimina imágenes
-- `make vclean`: Elimina volúmenes
-- `make nclean`: Elimina la red
-- `make fclean`: Elimina imágenes, volúmenes y red
-- `make fcclean`: Limpieza completa incluyendo caché
-- `make evaluation`: Prepara el entorno para evaluación
+- `make`: Build and start all services
+- `make up`: Build and start all services
+- `make down`: Stop all containers
+- `make restart`: Restart all services
+- `make build`: Build container images
+- `make rebuild`: Rebuild images without cache
+- `make clean`: Remove images
+- `make iclean`: Remove images
+- `make vclean`: Remove volumes
+- `make nclean`: Remove the network
+- `make fclean`: Remove images, volumes, and network
+- `make fcclean`: Full cleanup including cache
+- `make evaluation`: Prepare the environment for evaluation
 
-## 📊 Servicios y Puertos
+## 📊 Services and Ports
 
-| Servicio   | Puerto Interno | Puerto Externo | Descripción                 |
-|------------|----------------|----------------|----------------------------|
-| NGINX      | 443            | 443            | Servidor web principal con SSL |
-| WordPress  | 9000           | -              | Servicio de gestión de contenidos web (web en /) |
-| MariaDB    | 3306           | -              | Base de datos              |
-| Redis      | 6379           | -              | Cache                      |
-| Adminer    | 8000           | -              | Gestión de base de datos (web en /adminer) |
-| Portainer  | 9000           | -              | Gestión de Docker (web en /portainer)    |
-| Sitio Web  | -              | -              | Página web estática (web en /inception) |
-| VSFTPD     | 21             | 21             | Servidor FTP               |
-| VSFTPD     | 30000-30009    | 30000-30009    | Puertos pasivos FTP        |
+| Service   | Internal Port | External Port | Description                 |
+|-----------|---------------|---------------|-----------------------------|
+| NGINX     | 443           | 443           | Main web server with SSL    |
+| WordPress | 9000          | -             | Web CMS service (web at /)  |
+| MariaDB   | 3306          | -             | Database                    |
+| Redis     | 6379          | -             | Cache                       |
+| Adminer   | 8000          | -             | DB management (web at /adminer) |
+| Portainer | 9000          | -             | Docker management (web at /portainer) |
+| Website   | -             | -             | Static website (web at /inception) |
+| VSFTPD    | 21            | 21            | FTP server                  |
+| VSFTPD    | 30000-30009   | 30000-30009   | FTP passive ports           |
 
-## 🔒 Características de Seguridad
+## 🔒 Security Features
 
-- **SSL/TLS**: Solo protocolos TLSv1.2 y TLSv1.3 permitidos
-- **Puerto único expuesto**: Acceso web solo a través del puerto 443
-- **Variables de entorno**: Sin credenciales codificadas directamente
-- **Nombres de usuario no predeterminados**: Nombres de usuario personalizados para mejor seguridad
-- **Aislamiento de red**: Servicios internos no accesibles directamente desde el exterior
-- **Seguridad FTP**: Configurado con modo pasivo y acceso limitado de usuarios
+- **SSL/TLS**: Only TLSv1.2 and TLSv1.3 allowed
+- **Single exposed port**: Web access only through port 443
+- **Environment variables**: No hard-coded credentials
+- **Non-default usernames**: Custom usernames for better security
+- **Network isolation**: Internal services not directly accessible from outside
+- **FTP security**: Configured with passive mode and restricted user access
 
-## 🎁 Funcionalidades Bonus
+## 🎁 Bonus Features
 
 ### Redis Cache
-- Cache optimizada para WordPress
-- Mejora significativa en rendimiento
-- Configuración automática con WordPress
+- Optimized cache for WordPress
+- Significant performance improvement
+- Automatic WordPress configuration
 
 ### Adminer
-- Interfaz web para administración de base de datos
-- Temas personalizado
-- Acceso seguro a través de NGINX
+- Web interface for database administration
+- Custom themes
+- Secure access via NGINX
 
 ### Portainer
-- Interfaz de gestión de contenedores Docker
-- Monitorización en tiempo real del rendimiento de contenedores
-- Acceso fácil a logs y configuración de contenedores
-- Implementación y gestión simplificada de contenedores
+- Docker container management UI
+- Real-time monitoring of container performance
+- Easy access to logs and container configuration
+- Simplified container deployment and management
 
-### Sitio Web Estático
-- Página de presentación del proyecto con diseño responsive
-- Soporte multilingüe (Español e Inglés)
-- Enlaces directos a todos los servicios
-- Diseño moderno con animaciones CSS
-- Tecnologías: HTML5, CSS3 y JavaScript
+### Static Website
+- Project landing page with responsive design
+- Multilingual support (Spanish and English)
+- Direct links to all services
+- Modern design with CSS animations
+- Technologies: HTML5, CSS3, and JavaScript
 
-### Servidor VSFTPD
-- Acceso directo a archivos de WordPress
-- Configuración segura con usuarios específicos
+### VSFTPD Server
+- Direct access to WordPress files
+- Secure configuration with specific users
 
-## 📚 Recursos Útiles
+## 📚 Useful Resources
 
-- [Documentación de Docker](https://docs.docker.com/)
-- [Documentación de Docker Compose](https://docs.docker.com/compose/)
-- [Documentación de NGINX](https://nginx.org/en/docs/)
-- [Documentación de WordPress](https://wordpress.org/documentation/)
-- [Documentación de MariaDB](https://mariadb.com/kb/es/documentation/)
-- [Documentación de Redis](https://redis.io/documentation)
-- [Documentación de VSFTPD](https://security.appspot.com/vsftpd.html)
-- [Documentación de Adminer](https://www.adminer.org/en/)
-- [Documentación de Portainer](https://docs.portainer.io/)
+- [Docker Documentation](https://docs.docker.com/)
+- [Docker Compose Documentation](https://docs.docker.com/compose/)
+- [NGINX Documentation](https://nginx.org/en/docs/)
+- [WordPress Documentation](https://wordpress.org/documentation/)
+- [MariaDB Documentation](https://mariadb.com/kb/en/documentation/)
+- [Redis Documentation](https://redis.io/documentation)
+- [VSFTPD Documentation](https://security.appspot.com/vsftpd.html)
+- [Adminer Documentation](https://www.adminer.org/en/)
+- [Portainer Documentation](https://docs.portainer.io/)
 
 ---
 
-## 📄 Licencia
+## 📄 License
 
-Este proyecto está licenciado bajo la WTFPL – [Do What the Fuck You Want to Public License](http://www.wtfpl.net/about/).
+This project is licensed under the WTFPL – [Do What the Fuck You Want to Public License](http://www.wtfpl.net/about/).
 
 ---
 
 <div align="center">
 
-**🐳 Desarrollado como parte del curriculum de 42 School 🐳**
+**🐳 Developed as part of the 42 School curriculum 🐳**
 
 *"We need to go deeper... into containerization"*
 
