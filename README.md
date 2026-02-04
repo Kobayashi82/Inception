@@ -225,9 +225,9 @@ Este proyecto está licenciado bajo la WTFPL – [Do What the Fuck You Want to P
 *"We need to go deeper... into containerization"*
 
 <div align="center">
-  <img src="/srcs/requirements/nginx/conf/inception/images/logo.gif">
+  <img src="/Inception.jpg">
 </div>
 
 <div align="center">
-  <img src="/Inception.jpg">
+  <img src="/srcs/requirements/nginx/conf/inception/images/logo.gif">
 </div>
