@@ -10,7 +10,7 @@
 </div>
 
 <div align="center">
-  <img src="/Inception.jpg">
+  <img src="/Inception.png">
 </div>
 
 # Inception
@@ -226,4 +226,8 @@ Este proyecto está licenciado bajo la WTFPL – [Do What the Fuck You Want to P
 
 <div align="center">
   <img src="/srcs/requirements/nginx/conf/inception/images/logo.gif">
+</div>
+
+<div align="center">
+  <img src="/Inception.jpg">
 </div>
