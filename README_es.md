@@ -17,9 +17,7 @@
 
 [README in English](README.md)
 
-## 📋 Descripción del Proyecto
-
-Inception es un proyecto de administración de sistemas que tiene como objetivo ampliar el conocimiento sobre virtualización mediante Docker. El proyecto consiste en crear una pequeña infraestructura compuesta por diferentes servicios bajo reglas específicas, todo ejecutándose en contenedores Docker orquestados con docker-compose.
+`Inception` es un proyecto de administración de sistemas que tiene como objetivo ampliar el conocimiento sobre virtualización mediante `Docker`. El proyecto consiste en crear una pequeña infraestructura compuesta por diferentes servicios bajo reglas específicas, todo ejecutándose en contenedores `Docker` orquestados con `docker-compose`.
 
 ## 🎯 Objetivos
 
@@ -34,17 +32,17 @@ La infraestructura está compuesta por los siguientes servicios principales:
 
 ### Servicios Principales
 
-- **NGINX**: Servidor web con soporte TLSv1.2/TLSv1.3
-- **WordPress**: Sistema de gestión de contenidos para crear y administrar sitios web
-- **MariaDB**: Base de datos para WordPress
+- `NGINX`: Servidor web con soporte TLSv1.2/TLSv1.3
+- `WordPress`: Sistema de gestión de contenidos para crear y administrar sitios web
+- `MariaDB`: Base de datos para WordPress
 
 ### Servicios Bonus
 
-- **Redis**: Cache para WordPress
-- **Adminer**: Herramienta de administración de base de datos
-- **Portainer**: Panel de administración de Docker
-- **Sitio Web Estático**: Página web simple en HTML/CSS/JS
-- **VSFTPD**: Servidor FTP apuntando al volumen de WordPress
+- `Redis`: Cache para WordPress
+- `Adminer`: Herramienta de administración de base de datos
+- `Portainer`: Panel de administración de Docker
+- `Sitio Web Estático`: Página web simple en HTML/CSS/JS
+- `VSFTPD`: Servidor FTP apuntando al volumen de WordPress
 
 ## 📁 Estructura del Proyecto
 
@@ -150,28 +148,28 @@ ADMIN_PASS=admin_pass (12 char min)
 
 ## 📊 Servicios y Puertos
 
-| Servicio   | Puerto Interno | Puerto Externo | Descripción                 |
-|------------|----------------|----------------|----------------------------|
-| NGINX      | 443            | 443            | Servidor web principal con SSL |
-| WordPress  | 9000           | -              | Servicio de gestión de contenidos web (web en /) |
-| MariaDB    | 3306           | -              | Base de datos              |
-| Redis      | 6379           | -              | Cache                      |
-| Adminer    | 8000           | -              | Gestión de base de datos (web en /adminer) |
-| Portainer  | 9000           | -              | Gestión de Docker (web en /portainer)    |
-| Sitio Web  | -              | -              | Página web estática (web en /inception) |
-| VSFTPD     | 21             | 21             | Servidor FTP               |
-| VSFTPD     | 30000-30009    | 30000-30009    | Puertos pasivos FTP        |
+| Servicio  | Puerto Interno | Puerto Externo | Descripción                                      |
+|-----------|----------------|----------------|--------------------------------------------------|
+| NGINX     | 443            | 443            | Servidor web principal con SSL                   |
+| WordPress | 9000           | -              | Servicio de gestión de contenidos web (web en /) |
+| MariaDB   | 3306           | -              | Base de datos                                    |
+| Redis     | 6379           | -              | Cache                                            |
+| Adminer   | 8000           | -              | Gestión de base de datos (web en /adminer)       |
+| Portainer | 9000           | -              | Gestión de Docker (web en /portainer)            |
+| Sitio Web | -              | -              | Página web estática (web en /inception)          |
+| VSFTPD    | 21             | 21             | Servidor FTP                                     |
+| VSFTPD    | 30000-30009    | 30000-30009    | Puertos pasivos FTP                              |
 
 ## 🔒 Características de Seguridad
 
-- **SSL/TLS**: Solo protocolos TLSv1.2 y TLSv1.3 permitidos
-- **Puerto único expuesto**: Acceso web solo a través del puerto 443
-- **Variables de entorno**: Sin credenciales codificadas directamente
-- **Nombres de usuario no predeterminados**: Nombres de usuario personalizados para mejor seguridad
-- **Aislamiento de red**: Servicios internos no accesibles directamente desde el exterior
-- **Seguridad FTP**: Configurado con modo pasivo y acceso limitado de usuarios
+- `SSL/TLS`: Solo protocolos TLSv1.2 y TLSv1.3 permitidos
+- `Puerto único expuesto`: Acceso web solo a través del puerto 443
+- `Variables de entorno`: Sin credenciales codificadas directamente
+- `Nombres de usuario no predeterminados`: Nombres de usuario personalizados para mejor seguridad
+- `Aislamiento de red`: Servicios internos no accesibles directamente desde el exterior
+- `Seguridad FTP`: Configurado con modo pasivo y acceso limitado de usuarios
 
-## 🎁 Funcionalidades Bonus
+## 🎁 Bonus
 
 ### Redis Cache
 - Cache optimizada para WordPress

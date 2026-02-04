@@ -17,9 +17,7 @@
 
 [README en Español](README_es.md)
 
-## 📋 Project Description
-
-Inception is a systems administration project aimed at expanding knowledge about virtualization using Docker. The project consists of creating a small infrastructure composed of different services under specific rules, all running in Docker containers orchestrated with docker-compose.
+`Inception` is a systems administration project aimed at expanding knowledge about virtualization using `Docker`. The project consists of creating a small infrastructure composed of different services under specific rules, all running in `Docker` containers orchestrated with `docker-compose`.
 
 ## 🎯 Objectives
 
@@ -34,17 +32,17 @@ The infrastructure is composed of the following main services:
 
 ### Core Services
 
-- **NGINX**: Web server with TLSv1.2/TLSv1.3 support
-- **WordPress**: Content management system to create and manage websites
-- **MariaDB**: Database for WordPress
+- `NGINX`: Web server with TLSv1.2/TLSv1.3 support
+- `WordPress`: Content management system to create and manage websites
+- `MariaDB`: Database for WordPress
 
 ### Bonus Services
 
-- **Redis**: Cache for WordPress
-- **Adminer**: Database administration tool
-- **Portainer**: Docker admin panel
-- **Static Website**: Simple HTML/CSS/JS website
-- **VSFTPD**: FTP server pointing to the WordPress volume
+- `Redis`: Cache for WordPress
+- `Adminer`: Database administration tool
+- `Portainer`: Docker admin panel
+- `Static Website`: Simple HTML/CSS/JS website
+- `VSFTPD`: FTP server pointing to the WordPress volume
 
 ## 📁 Project Structure
 
@@ -150,28 +148,28 @@ ADMIN_PASS=admin_pass (12 char min)
 
 ## 📊 Services and Ports
 
-| Service   | Internal Port | External Port | Description                 |
-|-----------|---------------|---------------|-----------------------------|
-| NGINX     | 443           | 443           | Main web server with SSL    |
-| WordPress | 9000          | -             | Web CMS service (web at /)  |
-| MariaDB   | 3306          | -             | Database                    |
-| Redis     | 6379          | -             | Cache                       |
-| Adminer   | 8000          | -             | DB management (web at /adminer) |
+| Service   | Internal Port | External Port | Description                           |
+|-----------|---------------|---------------|---------------------------------------|
+| NGINX     | 443           | 443           | Main web server with SSL              |
+| WordPress | 9000          | -             | Web CMS service (web at /)            |
+| MariaDB   | 3306          | -             | Database                              |
+| Redis     | 6379          | -             | Cache                                 |
+| Adminer   | 8000          | -             | DB management (web at /adminer)       |
 | Portainer | 9000          | -             | Docker management (web at /portainer) |
-| Website   | -             | -             | Static website (web at /inception) |
-| VSFTPD    | 21            | 21            | FTP server                  |
-| VSFTPD    | 30000-30009   | 30000-30009   | FTP passive ports           |
+| Website   | -             | -             | Static website (web at /inception)    |
+| VSFTPD    | 21            | 21            | FTP server                            |
+| VSFTPD    | 30000-30009   | 30000-30009   | FTP passive ports                     |
 
 ## 🔒 Security Features
 
-- **SSL/TLS**: Only TLSv1.2 and TLSv1.3 allowed
-- **Single exposed port**: Web access only through port 443
-- **Environment variables**: No hard-coded credentials
-- **Non-default usernames**: Custom usernames for better security
-- **Network isolation**: Internal services not directly accessible from outside
-- **FTP security**: Configured with passive mode and restricted user access
+- `SSL/TLS`: Only TLSv1.2 and TLSv1.3 allowed
+- `Single exposed port`: Web access only through port 443
+- `Environment variables`: No hard-coded credentials
+- `Non-default usernames`: Custom usernames for better security
+- `Network isolation`: Internal services not directly accessible from outside
+- `FTP security`: Configured with passive mode and restricted user access
 
-## 🎁 Bonus Features
+## 🎁 Bonus
 
 ### Redis Cache
 - Optimized cache for WordPress
