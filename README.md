@@ -102,7 +102,7 @@ ADMIN_NAME=admin_name
 ADMIN_PASS=admin_pass (12 char min)
 ```
 
-## 🚀 Installation and Usage
+## 🔧 Installation and Usage
 
 ### Installation steps
 
