@@ -10,7 +10,7 @@
 </div>
 
 <div align="center">
-  <img src="/Inception.png">
+  <img src="/images/Inception.jpg">
 </div>
 
 # Inception
@@ -225,7 +225,7 @@ This project is licensed under the WTFPL – [Do What the Fuck You Want to Publi
 *"We need to go deeper... into containerization"*
 
 <div align="center">
-  <img src="/Inception.jpg">
+  <img src="/images/Inception_web.jpg">
 </div>
 
 <div align="center">
