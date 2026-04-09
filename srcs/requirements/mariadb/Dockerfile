@@ -1,5 +1,5 @@
 # Debian image
-FROM debian:bullseye
+FROM debian:bookworm
 
 # Install MariaDB
 RUN apt-get update && apt-get install -y mariadb-server mariadb-client

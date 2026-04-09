@@ -48,5 +48,5 @@ cp /tmp/Makefile /home/vzurera/Makefile
 chown -R vzurera:vzurera /home/vzurera/srcs
 chown vzurera:vzurera /home/vzurera/Makefile
 
-# vagrant ssh -- -X -t "firefox"
-# vagrant ssh -- -X -t "filezilla"
+sudo sed -i 's/^PasswordAuthentication no/PasswordAuthentication yes/' /etc/ssh/sshd_config
+sudo systemctl restart sshd

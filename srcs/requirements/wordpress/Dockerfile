@@ -1,15 +1,15 @@
 # Debian image
-FROM debian:bullseye
+FROM debian:bookworm
 
 # Install PHP & wget
-RUN apt-get update && apt-get install -y wget php7.4 php7.4-cli php7.4-fpm php7.4-mysql php7.4-xml php7.4-curl php7.4-zip php7.4-mbstring php-redis mariadb-client
+RUN apt-get update && apt-get install -y wget php8.2 php8.2-cli php8.2-fpm php8.2-mysql php8.2-xml php8.2-curl php8.2-zip php8.2-mbstring php-redis mariadb-client
 
 # Clean up
 RUN apt-get clean && rm -rf /var/lib/apt/lists/*
 
 # PHP Settings
 RUN mkdir -p /run/php/
-RUN sed -i "s|listen = /run/php/php7.4-fpm.sock|listen = 9000|g"	/etc/php/7.4/fpm/pool.d/www.conf
+RUN sed -i "s|listen = /run/php/php8.2-fpm.sock|listen = 9000|g" /etc/php/8.2/fpm/pool.d/www.conf
 
 # WordPress Settings
 RUN mkdir -p /var/www
@@ -27,3 +27,5 @@ RUN chmod +x /usr/local/bin/config_wp.sh
 ENTRYPOINT ["/usr/local/bin/config_wp.sh"]
 
 EXPOSE 9000
+
+# docker compose -f srcs/docker-compose.yml up -d --build --force-recreate wordpress nginx

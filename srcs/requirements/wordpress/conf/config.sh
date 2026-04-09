@@ -19,15 +19,19 @@ if [ ! -f "/var/www/wp-config.php" ]; then
                      --dbpass=$SQL_PASSWORD \
                      --dbhost=mariadb:3306 --path='/var/www'
 
-    wp core install --allow-root \
-                    --url=$WP_URL \
-                    --title=$WP_TITLE \
-                    --admin_user=$WP_ADMIN_USER \
-                    --admin_password=$WP_ADMIN_PASSWORD \
-                    --admin_email=$WP_ADMIN_EMAIL --path='/var/www'
-    
-    wp user create --allow-root \
-                   $WP_USER $WP_USER_EMAIL --role=author --user_pass=$WP_USER_PASSWORD --path='/var/www'
+    if ! wp core is-installed --allow-root --path='/var/www' >/dev/null 2>&1; then
+        wp core install --allow-root \
+                        --url=$WP_URL \
+                        --title=$WP_TITLE \
+                        --admin_user=$WP_ADMIN_USER \
+                        --admin_password=$WP_ADMIN_PASSWORD \
+                        --admin_email=$WP_ADMIN_EMAIL --path='/var/www'
+    fi
+
+    if ! wp user get "$WP_USER" --field=ID --allow-root --path='/var/www' >/dev/null 2>&1; then
+        wp user create --allow-root \
+                       "$WP_USER" "$WP_USER_EMAIL" --role=author --user_pass="$WP_USER_PASSWORD" --path='/var/www'
+    fi
 
     wp config set WP_REDIS_HOST 'redis' --allow-root --path='/var/www'
     wp config set WP_REDIS_PORT 6379 --raw --allow-root --path='/var/www'
@@ -35,12 +39,12 @@ if [ ! -f "/var/www/wp-config.php" ]; then
     wp config set WP_REDIS_PASSWORD "$REDIS_PASSWORD" --allow-root --path='/var/www'
 
     wp plugin install redis-cache --activate --allow-root --path='/var/www'
-    wp redis enable --allow-root --path='/var/www'
-    
-    wp theme install inspire --activate --allow-root
+    wp redis enable --allow-root --path='/var/www' || true
+
+    wp theme install inspire --activate --allow-root --path='/var/www' || true
 fi
 
 chown -R www-data /var/www
 chmod -R 777 /var/www
 
-exec /usr/sbin/php-fpm7.4 -F
+exec /usr/sbin/php-fpm8.2 -F

@@ -1,6 +1,15 @@
 #!/bin/bash
 
-set -e
+set -euo pipefail
+
+mkdir -p /var/run/mysqld /var/lib/mysql
+chown -R mysql:mysql /var/run/mysqld /var/lib/mysql
+
+# If the mounted volume is empty, initialize system tables first.
+if [ ! -d "/var/lib/mysql/mysql" ]; then
+	echo "[mariadb] Initializing system tables"
+	mariadb-install-db --user=mysql --datadir=/var/lib/mysql
+fi
 
 # Check if WordPress database exists
 if [ ! -d "/var/lib/mysql/${SQL_DATABASE}" ]; then
@@ -19,17 +28,18 @@ EOF
 
 	# Execute initialization file
 	mysqld --user=mysql --bootstrap < create_db.sql
+	rm -f create_db.sql
 
-	chown -R www-data /var/lib/mysql
-	chmod -R 777 /var/lib/mysql
+	chown -R mysql:mysql /var/lib/mysql
+	chmod -R 755 /var/lib/mysql
 
 	# Check if initialization failed
 	if [ $? -ne 0 ]; then echo "Failed to initialize database"; exit 1; fi
 	echo "Database and user created successfully"
 fi
 
-chown -R www-data /var/lib/mysql
-chmod -R 777 /var/lib/mysql
+chown -R mysql:mysql /var/lib/mysql
+chmod -R 755 /var/lib/mysql
 
 # Execute MariaDB
-exec mysqld --bind-address=0.0.0.0
+exec mysqld --user=mysql --bind-address=0.0.0.0

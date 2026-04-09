@@ -1,8 +1,8 @@
 # Debian image
-FROM debian:bullseye
+FROM debian:bookworm
 
 # Install PHP & wget
-RUN apt-get update && apt-get install -y wget php7.4 php7.4-mysql
+RUN apt-get update && apt-get install -y wget php8.2-cli php8.2-mysql
 
 # Clean up
 RUN apt-get clean && rm -rf /var/lib/apt/lists/*
@@ -13,6 +13,6 @@ RUN wget "https://github.com/vrana/adminer/releases/download/v4.8.1/adminer-4.8.
 RUN wget "https://raw.githubusercontent.com/Niyko/Hydra-Dark-Theme-for-Adminer/master/adminer.css" -O adminer/adminer.css
 
 # Execute PHP as a server
-ENTRYPOINT ["php7.4", "-S", "0.0.0.0:8000"]
+ENTRYPOINT ["php", "-S", "0.0.0.0:8000"]
 
 EXPOSE 8000

@@ -1,5 +1,5 @@
 # Debian image
-FROM debian:bullseye
+FROM debian:bookworm
 
 # Install PHP & wget
 RUN apt-get update && apt-get install -y redis-server
